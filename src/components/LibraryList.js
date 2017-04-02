@@ -19,7 +19,6 @@ class LibraryList extends Component {
 	}
 	
 	render() {
-		console.log(this.props);
 		return (
 			<ListView
 			dataSource={this.dataSource}
@@ -31,7 +30,6 @@ class LibraryList extends Component {
 const mapStateToProps = (state) => {
 	return {
 		libraries:state.libraries,
-		selectedLibraryId:state.selectedLibraryId,
 	};
 };
 
