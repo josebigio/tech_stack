@@ -12,9 +12,9 @@ class LibraryList extends Component {
 		this.dataSource = ds.cloneWithRows(this.props.libraries);
 	}
 
-	renderRow(rowData) {
+	renderRow(library) {
 		return (
-			<ListItem rowData={rowData}/>
+			<ListItem library={library}/>
 		);
 	}
 	
@@ -29,7 +29,10 @@ class LibraryList extends Component {
 }
 
 const mapStateToProps = (state) => {
-	return {libraries:state.libraries};
+	return {
+		libraries:state.libraries,
+		selectedLibraryId:state.selectedLibraryId,
+	};
 };
 
 export default connect(mapStateToProps)(LibraryList);
