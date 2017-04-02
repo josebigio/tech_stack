@@ -12,8 +12,8 @@ class ListItem extends Component {
 	}
 
 	renderDescription() {
-		const { expanded, library } = this.props;
-		if(expanded) {
+		const { library } = this.props;
+		if(library.expanded) {
 			return (
 				<CardSection>
 					<Text>{library.description}</Text>
@@ -23,16 +23,22 @@ class ListItem extends Component {
 	}
 
 	render() {
+		console.log(this.props);
 		const {titleStyle} = styles;
 		const { title, id } = this.props.library;
 		return (
 			<TouchableWithoutFeedback
-			onPress={()=>this.props.selectLibrary(id)}>
+				onPress={()=>{
+					this.props.onPress(id);
+				}}
+			>
 				<View>
-					<CardSection>
-						<Text style={titleStyle}>{title}</Text>
-					</CardSection>
-					{this.renderDescription()}
+					<Card>
+						<CardSection>
+							<Text style={titleStyle}>{title}</Text>
+						</CardSection>
+						{this.renderDescription()}
+					</Card>
 				</View>
 			</TouchableWithoutFeedback>
 		);
@@ -46,9 +52,4 @@ const styles = {
 	}
 }
 
-const mapStateToProps = (state, ownProps) =>{
-	const expanded = state.selectLibraryId === ownProps.library.id;
-	return {expanded};
-};
-
-export default connect(mapStateToProps,actions)(ListItem);
+export default ListItem;
