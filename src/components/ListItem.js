@@ -12,8 +12,8 @@ class ListItem extends Component {
 	}
 
 	renderDescription() {
-		const { library } = this.props;
-		if(library.expanded) {
+		const { library, expanded } = this.props;
+		if(expanded) {
 			return (
 				<CardSection>
 					<Text>{library.description}</Text>
@@ -23,7 +23,7 @@ class ListItem extends Component {
 	}
 
 	render() {
-		console.log(this.props);
+		console.log('rendering listview item');
 		const {titleStyle} = styles;
 		const { title, id } = this.props.library;
 		return (
@@ -52,4 +52,17 @@ const styles = {
 	}
 }
 
-export default ListItem;
+const mapStateToProps = (state,ownProps) => {
+	let expanded = false;
+	state.libraries.forEach((element)=>{
+		if(element.id === ownProps.library.id) {
+			//console.log('found');
+			expanded = element.expanded;
+		}
+	});
+	return {
+		expanded
+	};
+};
+
+export default connect(mapStateToProps)(ListItem);

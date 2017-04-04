@@ -7,7 +7,8 @@ import * as actions from '../actions';
 
 class LibraryList extends Component {
 
-	buildList() {
+	constructor(props) {
+		super(props);
 		const ds = new ListView.DataSource({
 			rowHasChanged: (r1,r2) => r1 !== r2
 		});
@@ -30,7 +31,6 @@ class LibraryList extends Component {
 	}
 	
 	render() {
-		this.buildList();	
 		return (
 			<ListView
 				dataSource={this.dataSource}
