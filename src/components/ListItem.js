@@ -7,7 +7,6 @@ import * as actions from '../actions';
 class ListItem extends Component {
 
 	componentWillUpdate() {
-		console.log('componentWillUpdate');
 		LayoutAnimation.spring();
 	}
 
@@ -56,7 +55,6 @@ const mapStateToProps = (state,ownProps) => {
 	let expanded = false;
 	state.libraries.forEach((element)=>{
 		if(element.id === ownProps.library.id) {
-			//console.log('found');
 			expanded = element.expanded;
 		}
 	});
